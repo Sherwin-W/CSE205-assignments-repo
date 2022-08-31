@@ -19,15 +19,15 @@ public class Assignment2 {
             if(number < minInt){
                 minInt = number;
             }
+            if(number % 2 != 0){
+                countOdd ++;
+            }
             if(number > 0){
                 sumPositive += number;
                 if(number % 2 == 0){
                     if(number > largestEven){
                         largestEven = number;
                     }
-                }
-                else{
-                    countOdd ++;
                 }
             }
             number = console.nextInt();
