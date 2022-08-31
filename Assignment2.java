@@ -12,8 +12,8 @@ public class Assignment2 {
 
        int number = console.nextInt();
        int countOdd = 0;
-       int minInt = Integer.MAX_VALUE;
-       int largestEven = Integer.MIN_VALUE;
+       int minInt = 0;
+       int largestEven = 0;
        int sumPositive = 0;
        while(number != 0){
             if(number < minInt){
@@ -27,8 +27,9 @@ public class Assignment2 {
                     }
                 }
                 else{
-                    countOdd ++;
-                }
+                    if(number > 0){
+                        countOdd ++;
+                    }
             }
             number = console.nextInt();
        }
