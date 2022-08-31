@@ -26,12 +26,10 @@ public class Assignment2 {
                         largestEven = number;
                     }
                 }
-            }
                 else{
-                    if(number > 0){
-                        countOdd ++;
-                    }
+                    countOdd ++;
                 }
+            }
             number = console.nextInt();
        }
 
