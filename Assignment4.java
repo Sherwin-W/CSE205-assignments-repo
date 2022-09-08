@@ -2,10 +2,10 @@
 Name: Sherwin Wang
 StudentID: 1224486887
 Lecture: M W F 10:10 AM - 11:00 AM
- Description: Assignment 4 class displays a menu of choices to a user
- and performs the chosen task. It will keep asking a user to
- enter the next choice until the choice of 'Q' (Quit) is entered.
- */
+Description: Assignment 4 class displays a menu of choices to a user
+and performs the chosen task. It will keep asking a user to
+enter the next choice until the choice of 'Q' (Quit) is entered.
+*/
 
 import java.util.*;
 

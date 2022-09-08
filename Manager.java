@@ -1,3 +1,11 @@
+/*
+    Name: Sherwin Wang
+    StudentID: 1224486887
+    Lecture: M W F 10:10 AM - 11:00 AM
+    Description: The class Manager constructs manager object given information and returns the given 
+                information in desired format.
+*/
+
 public class Manager {
     private String firstName;
     private String lastName;
@@ -18,7 +26,7 @@ public class Manager {
         this.yearsExperience = yearsExperience;
         this.managingSince = managingSince;
     }
-    //getters
+    //basic getters
     public String getFirstName(){
         return this.firstName;
     }
@@ -31,7 +39,7 @@ public class Manager {
     public String getManagingSince(){
         return this.managingSince;
     }
-    //setters
+    //basic setters
     public void setFirstName(String someFirstName){
         this.firstName = someFirstName;
     }
@@ -44,6 +52,7 @@ public class Manager {
     public void setManagingSince(String someDate){
         this.managingSince = someDate;
     }
+    //provides description in correct format
     public String toString(){
         return "\nLast Name:\t" + this.lastName + "\nFirst Name:\t" + 
                 this.firstName + "\nYears of Experience:\t" + this.yearsExperience + 
