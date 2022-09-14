@@ -1,9 +1,9 @@
 public class AircraftEntity {
 
-    private String entityName;
-    private int ammo;
-    private double range;
-    private int attackPower;
+    protected String entityName;
+    protected int ammo;
+    protected double range;
+    protected int attackPower;
 
     public AircraftEntity(){
         this.entityName = "";
@@ -23,8 +23,9 @@ public class AircraftEntity {
         return this.attackPower;
     }
 
-    // public abstract void computeAttackPower(){
-    // }
+    public void computeAttackPower(){
+
+    }
 
     public String toString(){
         return "Aircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + this.ammo + 

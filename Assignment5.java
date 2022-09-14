@@ -2,7 +2,9 @@
     Name: Sherwin Wang
     StudentID: 1224486887
     Lecture: M W F 10:10 AM - 11:00 AM
-    Description: 
+    Description: This class provides an interface for the program, and calls upon the methods created by other classes to accept information,
+                create AircraftEntities, compute their attack powers, show how many aircrafts match the desired attack power range, and
+                display the information in an orderly list.
 */
 
 import java.io.*;         //to use InputStreamReader and BufferedReader
@@ -24,6 +26,8 @@ public class Assignment5 {
             // create a BufferedREader object to read input from a keyboard
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader stdin = new BufferedReader(isr);
+            AircraftParser parser = new AircraftParser();
+            AircraftEntity plane;
 
             do{
                 System.out.println("\nWhat action would you like to perform?");
@@ -36,23 +40,17 @@ public class Assignment5 {
                         case 'A': // add aircraft to the fleet
                             System.out.println("Please enter your aircraft stats:");
                             inputInfo = stdin.readLine().trim();
-                            AircraftParser parser = new AircraftParser();
-                            AircraftEntity plane = parser.parseNewAircraft(inputInfo);
+                            plane = parser.parseNewAircraft(inputInfo);
                             aircraftList.add(plane);
-                            /**********************************************************************************************************
-                            **  ADD code here to create an aircraft object (child of AircraftEntity) and add it to the aircraft list **
-                            **********************************************************************************************************/
+                            //creates an aircraft object (child of AircraftEntity) and add it to the aircraft list
                             break;
 
                         case 'C': // calculate attack powers
                             AircraftEntity placer;
                             for(int i = 0; i < aircraftList.size(); i++){
-                                placer = aircraftList.get(i);
-                                placer.getAttackPower();
+                                aircraftList.get(i).computeAttackPower();
                             }
-                            /*********************************************************************************
-                            **  ADD code here to compute the attack power for all the aircrafts in the list **
-                            *********************************************************************************/
+                            //computes the attack power for all the aircrafts in the list
                             System.out.println("Attack powers computed");
                             break;
 
@@ -61,18 +59,29 @@ public class Assignment5 {
                             inputInfo = stdin.readLine().trim();
                             int min = Integer.parseInt(inputInfo);
                             int count = 0;
-                            /***********************************************************************************************************
-                            **  ADD code here to count how many aircrafts in the list have attack powers equal to or larger than input**
-                            ***********************************************************************************************************/
+                            int power = 0;
+                            for(int i = 0; i < aircraftList.size(); i++){
+                                placer = aircraftList.get(i);
+                                power = placer.getAttackPower();
+                                if(power >= min){
+                                    count++;
+                                }
+                            }
+                            //counts how many aircrafts in the list have attack powers equal to or larger than input
                             System.out.println("The number of aircrafts with " + min
                                     + " attack powers or more is: " + count);
                             break;
 
                         case 'L': // list aircrafts
-                            /***********************************************************
-                            **  ADD code here to print all aircrafts in the list 
-                            **  If the list is empty print "No aircrafts in the fleet yet.\n"
-                            ************************************************************/
+                            if(aircraftList.isEmpty()){
+                                System.out.println("No aircrafts in the fleet yet.\n");
+                            }
+                            else{
+                                for(int i = 0; i < aircraftList.size(); i++){
+                                    placer = aircraftList.get(i);
+                                    System.out.println(placer.toString());
+                                }
+                            }
                             break;
 
                         case 'Q':

@@ -4,10 +4,10 @@ public class Bomber extends AircraftEntity{
     private boolean isJet;
 
     public Bomber(String entityName, int ammo, double range, boolean isJet){
-        entityName = this.entityName;
-        ammo = this.ammo;
-        range = this.range;
-        isJet = this.isJet;
+        this.entityName = entityName;
+        this.ammo = ammo;
+        this.range = range;
+        this.isJet = isJet;
 
         if(isJet){
             this.bombCarryingCapacity = 100;
@@ -30,15 +30,14 @@ public class Bomber extends AircraftEntity{
 
     public String toString(){
         String type;
-        if(isJet){
-            type = "Jet Type";
+        if(!this.isJet){
+            type = "Propeller Type";
         }
         else{
-            type = "Propeller Type";
+            type = "Jet Type";
         }
         return "Bomber:\t" + type + "\nAircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + this.ammo + "\nRange:\t" + 
                 this.range + "\nCurrent Attack Power:\t" + this.attackPower + "\nBomb Carrying Capacity:\t" + 
                 this.bombCarryingCapacity +"%\n";
-        
     }
 }
