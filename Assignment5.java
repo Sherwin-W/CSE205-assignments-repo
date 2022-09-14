@@ -1,4 +1,4 @@
-/* Assignment #: 4
+/* Assignment #: 5
     Name: Sherwin Wang
     StudentID: 1224486887
     Lecture: M W F 10:10 AM - 11:00 AM
@@ -36,12 +36,20 @@ public class Assignment5 {
                         case 'A': // add aircraft to the fleet
                             System.out.println("Please enter your aircraft stats:");
                             inputInfo = stdin.readLine().trim();
+                            AircraftParser parser = new AircraftParser();
+                            AircraftEntity plane = parser.parseNewAircraft(inputInfo);
+                            aircraftList.add(plane);
                             /**********************************************************************************************************
                             **  ADD code here to create an aircraft object (child of AircraftEntity) and add it to the aircraft list **
                             **********************************************************************************************************/
                             break;
 
                         case 'C': // calculate attack powers
+                            AircraftEntity placer;
+                            for(int i = 0; i < aircraftList.size(); i++){
+                                placer = aircraftList.get(i);
+                                placer.getAttackPower();
+                            }
                             /*********************************************************************************
                             **  ADD code here to compute the attack power for all the aircrafts in the list **
                             *********************************************************************************/
@@ -88,7 +96,7 @@ public class Assignment5 {
             System.out.println("IO Exception");
         }
 	}
-	
+
     public static void printMenu(){
         System.out.print("Choice\t\tAction\n" +
                 "------\t\t------\n" +
