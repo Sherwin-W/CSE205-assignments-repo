@@ -37,7 +37,7 @@ public class CombatHelicopter extends AircraftEntity{
     }
 
     public String toString(){
-        return "Combat Helicopter:\nAircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + 
+        return "Combat Helicopter\nAircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + 
                 this.ammo + "\nRange:\t" + this.range + "\nCurrent Attack Power:\t" + 
                 this.attackPower + "\nStealth Index:\t" + this.stealthIndex + "\n";
     }
