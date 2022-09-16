@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /* Assignment #: 5
     Name: Sherwin Wang
     StudentID: 1224486887
@@ -28,9 +30,8 @@ public class FighterJet extends AircraftEntity{
     }
 
     public String toString(){
-        return "Fighter Jet:\nAircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + 
-                this.ammo + "\nRange:\t" + this.range + "\nCurrent Attack Power:\t" + 
-                this.attackPower + "\nMaximum Speed:\t" + this.maxSpeed + "%\n";
+        DecimalFormat df = new DecimalFormat();
+        return "Fighter Jet:\n" + super.toString() + "Maximum Speed:\t" + df.format(this.maxSpeed) + "%\n";
     }
     //displays information in desired format
 }

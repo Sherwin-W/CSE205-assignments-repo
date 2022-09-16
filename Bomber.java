@@ -4,6 +4,9 @@
     Lecture: M W F 10:10 AM - 11:00 AM
     Description: Subclass of AircraftEntity, isJet, bombCarryingCapacity, and maxFlyingAltitude is unique to this class.
 */
+
+import java.text.DecimalFormat;
+
 public class Bomber extends AircraftEntity{
     private int bombCarryingCapacity;
     private double maxFlyingAltitude;
@@ -47,15 +50,16 @@ public class Bomber extends AircraftEntity{
 
     public String toString(){
         String type;
+        DecimalFormat df = new DecimalFormat();
         if(!this.isJet){
             type = "Propeller Type";
         }
         else{
             type = "Jet Type";
         }
-        return "Bomber:\t" + type + "\nAircraft name:\t" + this.entityName + "\nCurrent Ammo:\t" + this.ammo + "\nRange:\t" + 
-                this.range + "\nCurrent Attack Power:\t" + this.attackPower + "\nBomb Carrying Capacity:\t" + 
-                this.bombCarryingCapacity +"%\n";
+
+        return "Bomber:\t" + type + "\n" + super.toString() + "Bomb Carrying Capacity:\t" + 
+                df.format(this.bombCarryingCapacity) +"%\n";
     }
     //displays information in desired format
 }
