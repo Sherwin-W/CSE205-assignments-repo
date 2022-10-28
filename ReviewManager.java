@@ -34,6 +34,36 @@ public class ReviewManager implements Serializable {
      * @param  topFeature    most famous feature of the hotel
      * @return               true if the operation is successful; false otherwise
      */
+
+    public int hotelExists(String hotelName, String location){
+        int index = -1;
+        Hotel place;
+        for(int i = 0; i < reviewList.size(); i++){
+            place = reviewList.get(i);
+            if(hotelName.equals(place.getHotelName()) && location.equals(place.getLocation())){
+                index = i;
+            }
+        }
+        return index;
+    }
+
+
+    public ArrayList<Integer> hotelTypeExists(String hotelType){
+        ArrayList<Integer> indexList = new ArrayList<>();
+        Hotel place;
+        for(int i = 0; i < reviewList.size(); i++){
+            place = reviewList.get(i);
+            if(hotelType.equals(place.getHotelType())){
+                indexList.add(i);
+            }
+        }
+        return indexList;
+    }
+
+    public Hotel getHotel(int i){
+        return reviewList.get(i);
+    }
+
     public boolean addReview(String hotelName, int stars, String review, String priceRange, String type, String location, String topFeature) {
         if (hotelExists(hotelName, location) == -1) {
             int price = priceRange.length();
@@ -43,6 +73,33 @@ public class ReviewManager implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public void removeReview(String hotelName, String location){
+        Hotel place;
+        for(int i = 0; i < reviewList.size(); i++){
+            place = reviewList.get(i);
+            if(hotelName.equals(place.getHotelName()) && location.equals(place.getLocation())){
+                reviewList.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void sortByRating(){
+
+    }
+
+    public void sortByHotelType(){
+
+    }
+
+    public String listReviews(){
+        return "";
+    }
+
+    public void closeReviewManger(){
+        reviewList.clear();
     }
 
 }

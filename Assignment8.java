@@ -75,6 +75,8 @@ public class Assignment8 {
                         * "Hotel added\n" on screen, otherwise "Hotel NOT added\n" *
                         **********************************************************************/
 
+                        reviewManager.addReview(hotelName, rating, review, priceRange, hotelType, location, topFeature);
+                        System.out.print("Hotel added\n");
 
                     case 'D': // Search a Hotel
                         System.out.print("Please enter the Hotel name to search:\n");
@@ -86,12 +88,34 @@ public class Assignment8 {
                         * Complete the code. If a hotel review exists, print            *
                         * "Hotel found. Here's the review:\n"                           *
                         * Otherwise, print "Hotel not found. Please try again\n"        *
-                        **********************************************************************/                 
+                        **********************************************************************/   
+                        
+                        if(reviewManager.hotelExists(hotelName, location)!= -1){
+                            System.out.print("Hotel found. Here's the review:\n");
+                            // System.out.print(manager.getHotel().getReview());
+                        }
+                        else{
+                            System.out.print("Hotel not found. Please try again\n");
+                        }
 
 
                     case 'E': // Search for a Hotel Type
                         System.out.print("Please enter the hotel type to search:\n");
                         hotelType = stdin.readLine().trim();
+                        
+                        ArrayList<Integer> intList = new ArrayList<Integer>();
+                        intList = reviewManager.hotelTypeExists(hotelType);
+                        if(!intList.isEmpty()){
+                            System.out.print(intList.size() + " Hotels matching " + hotelType + " type were found:\n");
+
+                            for(int x = 0; x < intList.size(); x++){
+                                
+                            }
+                        }
+                        else{
+                            System.out.print("Hotel Type: " + hotelType + " was NOT found\n");
+                        }
+
                         
                         /*******************************************************************************
                         * Complete the code. If a hotel type is found, show on the screen how many       *
@@ -112,6 +136,8 @@ public class Assignment8 {
                      ******************************************************************************************/                        
                  
                         
+                    case 'N': //Sort reviews by rating
+
                     case 'Q': // Quit
                         break;
 
@@ -120,6 +146,9 @@ public class Assignment8 {
                         hotelName = stdin.readLine().trim();
                         System.out.print("Please enter the location to remove:\n");
                         location = stdin.readLine().trim();
+
+                        reviewManager.removeReview(hotelName, location);
+                        System.out.print("");
                         
                         /*******************************************************************************
                         * Complete the code. If a review for a certain hotel at a given location  *
@@ -129,7 +158,7 @@ public class Assignment8 {
                         
                         
                     case 'T': // Close reviewList
-                        reviewManager.closeReviewManager();
+                        // manager.closeReviewManager();
                         System.out.print("Hotel management system was reset\n");
                         break;
 
