@@ -1,3 +1,9 @@
+// Assignment: 8
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Compares hotels using rating criteria
+
 import java.util.Comparator;
 
 public class ReviewRatingComparator implements Comparator<Hotel>{

@@ -1,8 +1,8 @@
-// Assignment: 
-// Name:
-// StudentID:
-// Lecture:
-// Description:
+// Assignment: 8
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Hotel info
 
 import java.io.Serializable;
 

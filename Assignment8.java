@@ -1,8 +1,8 @@
-// Assignment: 
-// Name:
-// StudentID:
-// Lecture:
-// Description:
+// Assignment: 8
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Assignment 8 main class
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -75,8 +75,13 @@ public class Assignment8 {
                         * "Hotel added\n" on screen, otherwise "Hotel NOT added\n" *
                         **********************************************************************/
 
-                        reviewManager.addReview(hotelName, rating, review, priceRange, hotelType, location, topFeature);
-                        System.out.print("Hotel added\n");
+                        if(true == reviewManager.addReview(hotelName, rating, review, priceRange, hotelType, location, topFeature)){
+                            System.out.print("Hotel added\n");
+                        }
+                        else{
+                            System.out.print("Hotel NOT added\n");
+                        }
+                        break;
 
                     case 'D': // Search a Hotel
                         System.out.print("Please enter the Hotel name to search:\n");
@@ -90,32 +95,30 @@ public class Assignment8 {
                         * Otherwise, print "Hotel not found. Please try again\n"        *
                         **********************************************************************/   
                         
-                        if(reviewManager.hotelExists(hotelName, location)!= -1){
+                        if(reviewManager.hotelExists(hotelName, location) >= 0){
                             System.out.print("Hotel found. Here's the review:\n");
-                            // System.out.print(manager.getHotel().getReview());
+                            System.out.print(reviewManager.getHotel(reviewManager.hotelExists(hotelName, location)));
                         }
                         else{
                             System.out.print("Hotel not found. Please try again\n");
                         }
-
+                        break;
 
                     case 'E': // Search for a Hotel Type
                         System.out.print("Please enter the hotel type to search:\n");
                         hotelType = stdin.readLine().trim();
                         
-                        ArrayList<Integer> intList = new ArrayList<Integer>();
-                        intList = reviewManager.hotelTypeExists(hotelType);
-                        if(!intList.isEmpty()){
-                            System.out.print(intList.size() + " Hotels matching " + hotelType + " type were found:\n");
-
-                            for(int x = 0; x < intList.size(); x++){
-                                
+                        int length = reviewManager.hotelTypeExists(hotelType).size();
+                        if(length > 0){
+                            System.out.printf("%s Hotels matching %s type were found:\n", length, hotelType);
+                            for(int i = 0; i < length; i++){
+                                System.out.print(reviewManager.getHotel(reviewManager.hotelTypeExists(hotelType).get(i)).getReview());
                             }
                         }
                         else{
-                            System.out.print("Hotel Type: " + hotelType + " was NOT found\n");
+                            System.out.printf("Hotel Type: %s was NOT found\n", hotelType);
                         }
-
+                        break;
                         
                         /*******************************************************************************
                         * Complete the code. If a hotel type is found, show on the screen how many       *
@@ -137,7 +140,13 @@ public class Assignment8 {
                  
                         
                     case 'N': //Sort reviews by rating
-
+                        reviewManager.sortByRating();
+                        System.out.print("sorted by rating\n");
+                        break;
+                    case 'P': //Sort reviews by hotel type
+                        reviewManager.sortByHotelType();
+                        System.out.print("sorted by hotel type\n");
+                        break;
                     case 'Q': // Quit
                         break;
 
@@ -147,8 +156,14 @@ public class Assignment8 {
                         System.out.print("Please enter the location to remove:\n");
                         location = stdin.readLine().trim();
 
-                        reviewManager.removeReview(hotelName, location);
-                        System.out.print("");
+                        if(reviewManager.hotelExists(hotelName, location) != -1){
+                            reviewManager.removeReview(hotelName, location);
+                            System.out.print(hotelName + ", " + location + " was removed\n");
+                        }
+                        else{
+                            System.out.print(hotelName + ", " + location + " was NOT removed\n");
+                        }
+                        break;
                         
                         /*******************************************************************************
                         * Complete the code. If a review for a certain hotel at a given location  *
@@ -177,6 +192,16 @@ public class Assignment8 {
                         * In case of an IO Exception, print "Write string inside the file error\n"           *                                                             
                         *************************************************************************************/                    
                               
+                        try{
+                            FileWriter outFile = new FileWriter(outFilename);
+                            outFile.write(outMsg + "\n");
+                            outFile.close();
+                            System.out.println(outFilename + " is written\n");
+                        }
+                        catch(IOException e){
+                            System.err.println("Write string inside the file error\n");
+                        }
+                        break;
 
                     case 'V': // Read strings from a text file
                         System.out.print("Please enter a file name which we will read from:\n");
@@ -189,6 +214,24 @@ public class Assignment8 {
                         * In case of a file not found exception, print that the file " was not found\n"           *                                                             
                         ******************************************************************************************/ 
                         
+                        try{
+                            String dat;
+                            FileReader inFile = new FileReader(inFilename);
+                            BufferedReader input = new BufferedReader(inFile);
+                            dat = input.readLine();
+                            System.out.print(inFilename + " was read\n");
+
+                            while(input.readLine() != null){
+                                System.out.println(dat);
+                            }
+                        }
+                        catch(FileNotFoundException f){
+                            System.err.print(inFilename + " was not \n");
+                        }
+                        catch(IOException e){
+                            System.out.print("Read string from file error\n");
+                        }
+                        break;
  
                     case 'W': // Serialize ReviewManager to a data file
                         System.out.print("Please enter a file name to write:\n");
@@ -201,6 +244,20 @@ public class Assignment8 {
                         * "Data file written exception\n"                                           * 
                         ****************************************************************************/                    
                         
+                        try{
+                            FileOutputStream fileOut = new FileOutputStream(outFilename);
+                            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+                            objOut.writeObject(reviewManager);
+                            objOut.close();
+                            fileOut.close();
+                        }
+                        catch(NotSerializableException n){
+                            System.err.print("Not serializable exception\n");
+                        }
+                        catch(IOException e){
+                            System.err.println("Data file written exception\n");
+                        }
+                        break;
 
                     case 'X': // Deserialize ReviewManager from a data file
                         System.out.print("Please enter a file name which we will read from:\n");
@@ -214,6 +271,23 @@ public class Assignment8 {
                          * "Data file read exception\n"                                              *
                          ****************************************************************************/  
                         
+                        try{
+                            FileInputStream fileIn = new FileInputStream(inFilename);
+                            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+                            reviewManager = (ReviewManager)objIn.readObject();
+                            objIn.close();
+                            fileIn.close();
+                        }
+                        catch(ClassNotFoundException c){
+                            System.err.println("Class not found expection\n");
+                        }
+                        catch(NotSerializableException n){
+                            System.err.print("Not serializable exception\n");
+                        }
+                        catch(IOException e){
+                            System.err.println("Data file written exception\n");
+                        }
+                        break;
 
                     case '?': // Display help
                         printMenu();

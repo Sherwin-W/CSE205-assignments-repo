@@ -1,8 +1,8 @@
-// Assignment:
-// Name:
-// StudentID:
-// Lecture:
-// Description:
+// Assignment: 8
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: ReviewManager with methods concerning hotel arraylist
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -87,15 +87,21 @@ public class ReviewManager implements Serializable {
     }
 
     public void sortByRating(){
-
+        ReviewRatingComparator ratComp = new ReviewRatingComparator();
+        Sorts.sort(reviewList, ratComp);
     }
 
     public void sortByHotelType(){
-
+        ReviewHotelTypeComparator hotComp = new ReviewHotelTypeComparator();
+        Sorts.sort(reviewList, hotComp);
     }
 
     public String listReviews(){
-        return "";
+        String result = "";
+        for(int i = 0; i < reviewList.size(); i++){
+            result += reviewList.get(i).toString();
+        }
+        return result;
     }
 
     public void closeReviewManger(){
