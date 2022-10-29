@@ -97,7 +97,7 @@ public class Assignment8 {
                         
                         if(reviewManager.hotelExists(hotelName, location) >= 0){
                             System.out.print("Hotel found. Here's the review:\n");
-                            System.out.print(reviewManager.getHotel(reviewManager.hotelExists(hotelName, location)));
+                            System.out.print(reviewManager.getHotel(reviewManager.hotelExists(hotelName, location)).getReview());
                         }
                         else{
                             System.out.print("Hotel not found. Please try again\n");

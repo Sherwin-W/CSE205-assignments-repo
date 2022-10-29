@@ -53,7 +53,7 @@ public class ReviewManager implements Serializable {
         Hotel place;
         for(int i = 0; i < reviewList.size(); i++){
             place = reviewList.get(i);
-            if(hotelType.equals(place.getHotelType())){
+            if(hotelType.equals(place.getHotelType().getType())){
                 indexList.add(i);
             }
         }
