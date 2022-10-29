@@ -16,7 +16,7 @@ public class ReviewRatingComparator implements Comparator<Hotel>{
         int result = 0;
 
         if(first.getStars() != second.getStars()){
-            result =  (int)(Math.abs(first.getStars() - second.getStars()));
+            result =  (int)(first.getStars() - second.getStars());
         }
         else {
             if(first.getHotelName().compareTo(second.getHotelName()) < 0){
