@@ -112,7 +112,7 @@ public class Assignment8 {
                         if(length > 0){
                             System.out.printf("%s Hotels matching %s type were found:\n", length, hotelType);
                             for(int i = 0; i < length; i++){
-                                System.out.print(reviewManager.getHotel(reviewManager.hotelTypeExists(hotelType).get(i)).getReview());
+                                System.out.print(reviewManager.getHotel(reviewManager.hotelTypeExists(hotelType).get(i)).toString());
                             }
                         }
                         else{
