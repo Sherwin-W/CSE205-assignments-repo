@@ -6,9 +6,47 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Assignment9 {
-
     public static void main(String[] args) {
-		
+        char input = ' ';
+        String line = "";
+        int[] ints;
+
+        try {
+            printMenu();
+            InputStreamReader streamReader = new InputStreamReader(System.in);
+            BufferedReader buff = new BufferedReader(streamReader);
+
+            do{
+
+            line = buff.readLine().trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+            input = line.charAt(0);
+
+                switch(input){
+                    case '1': 
+                        ints = parseInts(buff);
+
+                        
+
+                    case '2':
+                        ints = parseInts(buff);   
+
+                    case '3':
+                        System.out.print("Please enter String:\n");
+
+                    case '4':
+                        System.out.print("Please enter String:\n");
+
+                    case '5':
+                        break;
+                }
+            }while(input != '5' || line.length() != 1);
+            
+        } catch (IOException e) {
+            System.out.print("IO Exception\n");
+        }
 	
     }
 
