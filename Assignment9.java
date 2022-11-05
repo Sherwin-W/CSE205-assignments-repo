@@ -6,10 +6,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Assignment9 {
+    int biggestPrime = 0;
     public static void main(String[] args) {
         char input = ' ';
         String line = "";
         int[] ints;
+        boolean isPalindrome;
 
         try {
             printMenu();
@@ -27,18 +29,31 @@ public class Assignment9 {
                 switch(input){
                     case '1': 
                         ints = parseInts(buff);
-
-                        
-
+                        break;
                     case '2':
                         ints = parseInts(buff);   
-
+                        break;
                     case '3':
                         System.out.print("Please enter String:\n");
+                        line = buff.readLine().trim();
+                        if (line.isEmpty()) {
+                            continue;
+                        }
+                        if(isPalindrome(line, 0, line.length()-1)){
+                            isPalindrome = true;
+                        }
+                        else{
+                            isPalindrome = false;
+                        }
+                        System.out.print("Palindrome test result is: "  + isPalindrome);
 
+                        break;
                     case '4':
                         System.out.print("Please enter String:\n");
+                        line = buff.readLine().trim();
+                        System.out.print(removeA(line, 'A'));
 
+                        break;
                     case '5':
                         break;
                 }
@@ -87,4 +102,42 @@ public class Assignment9 {
         return result;
     }
 
+    public int findPrime(int[] ints, int place, int base){
+        int result = 0;
+            if(base < ints[place]){
+                if(ints[place] % base == 0){
+                findPrime(ints, place++, base);
+            }
+            else{
+                findPrime(ints, place, base++);
+            }
+        }
+        else{
+            if(ints[place] > this.biggestPrime){
+                this.biggestPrime = ints[place];
+            }
+        }
+        return result;
+    } 
+    public static boolean isPalindrome(String str, int start, int end){
+        if(start == end){
+            return true;
+        }
+        if(str.charAt(start) != str.charAt(end)){
+            return false;
+        }
+        if(start < end + 1){
+            return isPalindrome(str, start + 1, end - 1);
+        }
+            return true;
+    }
+    public static String removeA(String str, char remove){
+        if(str.length() == 0){
+            return "";
+        }
+        if(str.charAt(0) == remove){
+            return removeA(str.substring(1), remove);
+        }
+        return str.charAt(0) + removeA(str.substring(1), remove);
+    }
 }
