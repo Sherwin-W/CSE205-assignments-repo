@@ -85,7 +85,7 @@ public class Assignment9 {
             line = reader.readLine();
             int num = Integer.parseInt(line);
 
-            while (num > 0) {
+            while (num != 0) {
                 container.add(num);
                 line = reader.readLine();
                 num = Integer.parseInt(line);
