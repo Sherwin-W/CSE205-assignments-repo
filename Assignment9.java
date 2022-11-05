@@ -1,4 +1,8 @@
-// ADD YOUR HEADER HERE
+// Assignment: 9
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Assignment 9 main class
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,9 +33,12 @@ public class Assignment9 {
                 switch(input){
                     case '1': 
                         ints = parseInts(buff);
+                        printMenu();
                         break;
                     case '2':
-                        ints = parseInts(buff);   
+                        ints = parseInts(buff);  
+                        System.out.println("The sum of all even numbers in the array is: " + addEvens(ints, 0, 0));
+                        printMenu(); 
                         break;
                     case '3':
                         System.out.print("Please enter String:\n");
@@ -101,24 +108,32 @@ public class Assignment9 {
          }
         return result;
     }
-
-    public int findPrime(int[] ints, int place, int base){
-        int result = 0;
-            if(base < ints[place]){
-                if(ints[place] % base == 0){
-                findPrime(ints, place++, base);
-            }
-            else{
-                findPrime(ints, place, base++);
-            }
+    // public static int findPrime(int[] ints, int place, int base){
+    //     int result = 0;
+    //         if(base < ints[place]){
+    //             if(ints[place] % base == 0){
+    //             findPrime(ints, place++, base);
+    //         }
+    //         else{
+    //             findPrime(ints, place, base++);
+    //         }
+    //     }
+    //     else{
+    //         if(ints[place] > this.biggestPrime){
+    //             this.biggestPrime = ints[place];
+    //         }
+    //     }
+    //     return result;
+    // } 
+    public static int addEvens(int[] ints, int place, int total){
+        if(place == ints.length){
+            return total;
         }
-        else{
-            if(ints[place] > this.biggestPrime){
-                this.biggestPrime = ints[place];
-            }
+        if(ints[place] % 2 == 0){
+            total += ints[place];
         }
-        return result;
-    } 
+        return addEvens(ints, place + 1, total);
+    }
     public static boolean isPalindrome(String str, int start, int end){
         if(start == end){
             return true;
