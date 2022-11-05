@@ -45,14 +45,14 @@ public class Assignment9 {
                         else{
                             isPalindrome = false;
                         }
-                        System.out.print("Palindrome test result is: "  + isPalindrome);
-
+                        System.out.println("Palindrome test result is: "  + isPalindrome);
+                        printMenu();
                         break;
                     case '4':
                         System.out.print("Please enter String:\n");
                         line = buff.readLine().trim();
-                        System.out.print(removeA(line, 'A'));
-
+                        System.out.println("String after removing all occurrences of character \"A\": " + removeA(line, 'A'));
+                        printMenu();
                         break;
                     case '5':
                         break;
