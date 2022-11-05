@@ -33,6 +33,7 @@ public class Assignment9 {
                 switch(input){
                     case '1': 
                         ints = parseInts(buff);
+                        System.out.println("The largest prime number in the array is: " + findPrime(ints, 1, 0, 0));
                         printMenu();
                         break;
                     case '2':
@@ -108,23 +109,20 @@ public class Assignment9 {
          }
         return result;
     }
-    // public static int findPrime(int[] ints, int place, int base){
-    //     int result = 0;
-    //         if(base < ints[place]){
-    //             if(ints[place] % base == 0){
-    //             findPrime(ints, place++, base);
-    //         }
-    //         else{
-    //             findPrime(ints, place, base++);
-    //         }
-    //     }
-    //     else{
-    //         if(ints[place] > this.biggestPrime){
-    //             this.biggestPrime = ints[place];
-    //         }
-    //     }
-    //     return result;
-    // } 
+    public static int findPrime(int[] ints, int divisor, int place, int largest){
+        if(ints[place] % divisor != 0){
+            if(divisor < ints[place]-1){
+                return findPrime(ints, divisor + 1, place, largest);
+            }
+            else{
+                if(ints[place] > largest){
+                    return findPrime(ints, divisor, place + 1, ints[place]);
+                }
+            }
+
+        }
+        return findPrime(ints, divisor, place + 1, largest);
+    } 
     public static int addEvens(int[] ints, int place, int total){
         if(place == ints.length){
             return total;
