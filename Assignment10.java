@@ -41,7 +41,7 @@ public class Assignment10 {
                             String input = stdin.readLine().trim();
                             int numberOfPassengers = Integer.parseInt(input);
                             flightQueue.addFlight(flightNumber, destination, numberOfPassengers);
-                            System.out.println("Flight added successfully.\n");
+                            System.out.println("Fligh added successfully.\n");
                             break;
 
                         case 'C':   // Count passengers for a destination
