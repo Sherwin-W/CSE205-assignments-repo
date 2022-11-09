@@ -28,20 +28,20 @@ public class LinkedList {
     // Choice C
     public int getNumberOfPassengers(String destination){
         Flight current = first;
+        int total = 0;
         for(int i = 0; i < this.size; i++){
             if(current.toString().contains(destination)){
-                return current.numberOfPassengers;
+                total += current.numberOfPassengers;
             }
             current = current.next;
         }
-        return 0;
+        return total;
     }
 
     // Choice D
     public Flight removeFirstFlight(){
         Flight current = this.first;
         if(this.first != null){
-            current = current.next;
             this.first = this.first.next;
             this.size--;
         }
