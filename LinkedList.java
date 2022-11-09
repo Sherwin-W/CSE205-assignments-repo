@@ -39,36 +39,67 @@ public class LinkedList {
 
     // Choice D
     public Flight removeFirstFlight(){
-        Flight current = first;
+        Flight current = this.first;
         if(this.first != null){
             current = current.next;
+            this.first = this.first.next;
+            this.size--;
+        }
+        else{
+            current = new EmptyFlight();
         }
         return current;
     }
 
-    // // Choice D
-    // public String listFlights(){
+    // Choice L
+    public String listFlights(){
+        Flight current = this.first;
+        String result = "";
+        if(current != null){
+            for(int i = 0; i < this.size; i++){
+                result += current.toString();
+                current = current.next;
+            }
+            result += "\nTotal flights: " + this.size + ".\n";
+        }
+        else{
+            result += "No flights scheduled for departure at this time.\n";
+        }
 
-    // }
+        return result;
+    }
     
-    // // Choice E
-    // public int getPosition(String flightNumber){
+    // Choice Q
+    public int getPosition(String flightNumber){
+        Flight current = this.first;
+        int result = -1;
+        for(int i = 0; i < this.size; i++){
+            if(current.flightNumber.equals(flightNumber)){
+                result = i;
+            }
+            current = current.next;
+        }
+        return result;
+    }
 
-    // }
-
-    // // Choice F
-    // public Flight removeFlight(){
-
-    // }
-
-    // // Choice G
-    // public Flight removeLastFlight(){
-
-    // }
-
-    // // Choice H
-    // public Flight removeMiddleFlight(){
-
-    // }
-
+    // Choice R
+    public Flight removeFlight(String flightNumber){
+        Flight current = this.first;
+        Flight temp = current;
+        if(this.first != null){
+            for(int i = 0; i < this.size; i++){
+                if(current.flightNumber.equals(flightNumber)){
+                    temp = current;
+                    break;
+                }
+                current = current.next;
+            }
+            temp.next = current.next;
+            this.size--;
+        }
+        else{
+            current = new EmptyFlight();
+        }
+        return current;
+    }
 }

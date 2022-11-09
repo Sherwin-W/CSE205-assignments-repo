@@ -60,30 +60,30 @@ public class Assignment10 {
                                     nextInLine.flightNumber, nextInLine.destination, nextInLine.numberOfPassengers);
                             break;
 
-                        // case 'L':   // List all the flights
-                        //     String flightList = flightQueue.listFlights();
-                        //     System.out.println(flightList);
-                        //     break;
+                        case 'L':   // List all the flights
+                            String flightList = flightQueue.listFlights();
+                            System.out.println(flightList);
+                            break;
 
-                        // case 'P':   // Get position of a light
-                        //     System.out.println("Please enter the flight number you'd like to know the position of in the queue:");
-                        //     input = stdin.readLine().trim();
-                        //     int result = flightQueue.getPosition(input);
-                        //     if(result == -1)
-                        //         System.out.println("Flight not found, please try again.\n");
-                        //     else
-                        //         System.out.printf("Flight number %s is currently at position %d in the queue.\n\n", input, result + 1);
-                        //     break;
+                        case 'P':   // Get position of a flight
+                            System.out.println("Please enter the flight number you'd like to know the position of in the queue:");
+                            input = stdin.readLine().trim();
+                            int result = flightQueue.getPosition(input);
+                            if(result == -1)
+                                System.out.println("Flight not found, please try again.\n");
+                            else
+                                System.out.printf("Flight number %s is currently at position %d in the queue.\n\n", input, result + 1);
+                            break;
 
-                        // case 'R':   // Remove a flight
-                        //     System.out.println("Please enter the flight number you'd like to remove from the queue:");
-                        //     input = stdin.readLine().trim();
-                        //     Flight flight = flightQueue.removeFlight(input);
-                        //     if(flight.numberOfPassengers == -1)
-                        //         System.out.println("Flight not found, please try again.\n\n");
-                        //     else
-                        //         System.out.printf("Flight number %s going to %s has been cancelled.\n\n", flight.flightNumber, flight.destination);
-                        //     break;
+                        case 'R':   // Remove a flight
+                            System.out.println("Please enter the flight number you'd like to remove from the queue:");
+                            input = stdin.readLine().trim();
+                            Flight flight = flightQueue.removeFlight(input);
+                            if(flight.numberOfPassengers == -1)
+                                System.out.println("Flight not found, please try again.\n\n");
+                            else
+                                System.out.printf("Flight number %s going to %s has been cancelled.\n\n", flight.flightNumber, flight.destination);
+                            break;
                         
                         case 'Q':   //Quit
                             break;
