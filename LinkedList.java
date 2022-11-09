@@ -85,21 +85,21 @@ public class LinkedList {
     // Choice R
     public Flight removeFlight(String flightNumber){
         Flight current = this.first;
-        Flight temp = current;
-        if(this.first != null){
-            for(int i = 0; i < this.size; i++){
-                if(current.flightNumber.equals(flightNumber)){
-                    temp = current;
-                    break;
-                }
+        while(this.first != null){
+            this.first = this.first.next;
+            if(this.first.flightNumber.equals(flightNumber)){
+                return this.first;
+            }
+        }
+        while(current != null && current.next != null){
+            if(current.next.flightNumber.equals(flightNumber)){
+                current.next = current.next.next;
+            }
+            else{
                 current = current.next;
             }
-            temp.next = current.next;
-            this.size--;
         }
-        else{
-            current = new EmptyFlight();
-        }
-        return current;
+
+        return new EmptyFlight();
     }
 }
