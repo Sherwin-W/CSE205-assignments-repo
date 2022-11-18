@@ -14,11 +14,47 @@ public class Solver {
 	ArrayList<Node> visited;
 
 	public Solver(){
-
+		stack = new Stack<Node>();
+		grid = new int[height][width];
+		visited = new ArrayList<Node>();
+		this.increment = increment;
 	}
 
 	public void depthFirstSearch(){
+		Node place = new Node(0, 0);
+		stack.push(place);
+		visited.add(place);
+		while(!stack.isEmpty()){
 
+			if(place.getX() < grid.length-1){
+				place = new Node(place.getX() + 1, place.getY());
+				if(isVisited(place) == false){
+					stack.push(place);
+				}
+			}
+			if(place.getY() < grid[0].length-1){
+				place = new Node(place.getX(), place.getY() + 1);
+				if(isVisited(place) == false){
+					stack.push(place);
+				}
+			}
+			if(place.getX() > 0){
+				place = new Node(place.getX() - 1, place.getY());
+				if(isVisited(place) == false){
+					stack.push(place);
+				}
+			}
+			if(place.getY() > 0){
+				place = new Node(place.getX(), place.getY() - 1);
+				if(isVisited(place) == false){
+					stack.push(place);
+				}
+			}
+
+			place = stack.pop();
+			grid[place.getX()][place.getY()] += increment;
+			visited.add(place);
+		}
 	}
 
 	public boolean isVisited(Node node){
