@@ -65,7 +65,7 @@ public class Solver {
 			// 	}
 			// }
 
-			if(grid[place.getX()][place.getY()] < increment){
+			if(grid[place.getX()][place.getY()] < increment + grid[place.getX()][place.getY()]){
 				grid[place.getX()][place.getY()]+= increment;
 			}
 			place = stack.pop();
