@@ -1,3 +1,9 @@
+// Assignment: 11
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Contains the depthFirstSearch method that traverses the grid and increments every value, reads input for grid, and prints it out.
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,48 +23,57 @@ public class Solver {
 		stack = new Stack<Node>();
 		grid = new int[height][width];
 		visited = new ArrayList<Node>();
-		this.increment = increment;
 	}
 
 	public void depthFirstSearch(){
 		Node place = new Node(0, 0);
+		Node north;
+		Node south;
+		Node east;
+		Node west;
 		stack.push(place);
 		visited.add(place);
+
 		while(!stack.isEmpty()){
 
 			if(place.getX() < grid.length-1){
-				place = new Node(place.getX() + 1, place.getY());
-				if(isVisited(place) == false){
-					stack.push(place);
+				south = new Node(place.getX() + 1, place.getY());
+				if(!isVisited(south)){
+					stack.push(south);
+					visited.add(south);
 				}
 			}
 			if(place.getY() < grid[0].length-1){
-				place = new Node(place.getX(), place.getY() + 1);
-				if(isVisited(place) == false){
-					stack.push(place);
+				east = new Node(place.getX(), place.getY() + 1);
+				if(!isVisited(east)){
+					stack.push(east);
+					visited.add(east);
 				}
 			}
-			if(place.getX() > 0){
-				place = new Node(place.getX() - 1, place.getY());
-				if(isVisited(place) == false){
-					stack.push(place);
-				}
-			}
-			if(place.getY() > 0){
-				place = new Node(place.getX(), place.getY() - 1);
-				if(isVisited(place) == false){
-					stack.push(place);
-				}
-			}
+			// if(place.getX() > 0){
+			// 	north = new Node(place.getX() - 1, place.getY());
+			// 	if(!isVisited(north)){
+			// 		stack.push(north);
+			// 		visited.add(north);
+			// 	}
+			// }
+			// if(place.getY() > 0){
+			// 	west = new Node(place.getX(), place.getY() - 1);
+			// 	if(!isVisited(west)){
+			// 		stack.push(west);
+			// 		visited.add(west);
+			// 	}
+			// }
 
+			if(grid[place.getX()][place.getY()] < increment){
+				grid[place.getX()][place.getY()]+= increment;
+			}
 			place = stack.pop();
-			grid[place.getX()][place.getY()] += increment;
-			visited.add(place);
 		}
 	}
 
 	public boolean isVisited(Node node){
-		if(this.visited.contains(node)){
+		if(visited.contains(node)){
 			return true;
 		}
 		else{
