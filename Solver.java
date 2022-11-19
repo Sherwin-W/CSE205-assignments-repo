@@ -32,53 +32,58 @@ public class Solver {
 		Node east;
 		Node west;
 		stack.push(place);
-		visited.add(place);
 
 		while(!stack.isEmpty()){
+
+			place = stack.pop();
+			if(!isVisited(place)){
+				grid[place.getX()][place.getY()]+= increment;
+				visited.add(place);
+			}
+
 
 			if(place.getX() < grid.length-1){
 				south = new Node(place.getX() + 1, place.getY());
 				if(!isVisited(south)){
 					stack.push(south);
-					visited.add(south);
 				}
+	
 			}
 			if(place.getY() < grid[0].length-1){
 				east = new Node(place.getX(), place.getY() + 1);
 				if(!isVisited(east)){
 					stack.push(east);
-					visited.add(east);
+				}
+
+			}
+			if(place.getX() > 0){
+				north = new Node(place.getX() - 1, place.getY());
+				if(!isVisited(north)){
+					stack.push(north);
 				}
 			}
-			// if(place.getX() > 0){
-			// 	north = new Node(place.getX() - 1, place.getY());
-			// 	if(!isVisited(north)){
-			// 		stack.push(north);
-			// 		visited.add(north);
-			// 	}
-			// }
-			// if(place.getY() > 0){
-			// 	west = new Node(place.getX(), place.getY() - 1);
-			// 	if(!isVisited(west)){
-			// 		stack.push(west);
-			// 		visited.add(west);
-			// 	}
-			// }
-
-			if(grid[place.getX()][place.getY()] < increment + grid[place.getX()][place.getY()]){
-				grid[place.getX()][place.getY()]+= increment;
+			if(place.getY() > 0){
+				west = new Node(place.getX(), place.getY() - 1);
+				if(!isVisited(west)){
+					stack.push(west);
+				}
 			}
-			place = stack.pop();
 		}
 	}
 
 	public boolean isVisited(Node node){
-		if(visited.contains(node)){
-			return true;
+		// if(visited.contains(node)){
+		// 	return true;
+		// }
+		// else{
+		// 	return false;
+		// }
+		for(int i = 0; i < visited.size(); i++){
+			if(visited.get(i).getX() == node.getX() && visited.get(i).getY() == node.getY()){
+				return true;
+			}
 		}
-		else{
-			return false;
-		}
+		return false;
 	}
 
 
