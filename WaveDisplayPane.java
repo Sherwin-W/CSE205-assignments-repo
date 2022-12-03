@@ -13,6 +13,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
@@ -39,11 +40,11 @@ public class WaveDisplayPane extends Pane {
 		this.setStyle("-fx-background-color: white");
 		this.setStyle("-fx-border-color: black");
 
-		Keyframe keyframe = new KeyFrame(Duration.millis(500), new WaveHandler());;
+		KeyFrame keyframe = new KeyFrame(Duration.millis(500), new WaveHandler());;
 		timeline = new Timeline(keyframe);
 		timeline.setCycleCount(Animation.INDEFINITE);
-		timeLine.setRate(20);
-		timeLine.play();
+		timeline.setRate(20);
+		timeline.play();
 	}
 
 	// defines an event listener to draw a new point
@@ -70,8 +71,8 @@ public class WaveDisplayPane extends Pane {
 		this.time = 0;
 	}
 
-	public void changeColor(Color color){
-		this.color = color;
+	public void changeColor(Color chosen){
+		this.color = chosen;
 	}
 
 	public void clearPane(){
@@ -89,6 +90,6 @@ public class WaveDisplayPane extends Pane {
 
 	public void setRate(int rate){
 		this.time = rate;
-		timeLine.setRate(rate);
+		timeline.setRate(rate);
 	}
 }

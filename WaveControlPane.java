@@ -14,6 +14,15 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
+
+import javax.swing.Action;
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.event.ChangeEvent;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener.Change;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -85,23 +94,32 @@ public class WaveControlPane extends Pane {
 		// *************************************************************************
 
 		speedSlider = new Slider(10, 50, 20);
-		speedSlider.setMajorTickUnit(10);
-		speedSlider.setMinorTickCount(5);
+		speedSlider.setMajorTickUnit(10);;
+		speedSlider.setBlockIncrement(5);;
 		speedLabel = new Label("Speed");
+		speedSlider.setOrientation(Orientation.VERTICAL);
+		speedSlider.setShowTickMarks(true);
+		speedSlider.setShowTickLabels(true);
 
 		widthSlider = new Slider(20, 100, 50);
-		widthSlider.setMajorTickUnit(10);
-		widthSlider.setMinorTickCount(5);
+		widthSlider.setMajorTickUnit(20);
+		widthSlider.setBlockIncrement(5);
 		widthLabel = new Label("Width");
+		widthSlider.setOrientation(Orientation.VERTICAL);
+		widthSlider.setShowTickMarks(true);
+		widthSlider.setShowTickLabels(true);
 
 		heightSlider = new Slider(20, 100, 80);
-		heightSlider.setMajorTickUnit(10);
-		heightSlider.setMinorTickCount(5);
+		heightSlider.setMajorTickUnit(20);
+		heightSlider.setBlockIncrement(5);
 		heightLabel = new Label("Height");
+		heightSlider.setOrientation(Orientation.VERTICAL);
+		heightSlider.setShowTickMarks(true);
+		heightSlider.setShowTickLabels(true);
 
-		VBox speedSliderPane = new VBox(speedSlider, speedLabel);
-		VBox waveLengthSliderPane = new VBox(widthSlider, widthLabel);
-		VBox waveAmplitudeSliderPane = new VBox(heightSlider, heightLabel);
+		VBox speedSliderPane = new VBox(speedLabel, speedSlider);
+		VBox waveLengthSliderPane = new VBox(widthLabel, widthSlider);
+		VBox waveAmplitudeSliderPane = new VBox(heightLabel, heightSlider);
 
 		TilePane sliderPane = new TilePane();
 		sliderPane.setPrefColumns(3);
@@ -124,13 +142,15 @@ public class WaveControlPane extends Pane {
 		// *************************************************************************
 
 		start.setOnAction(new ButtonHandler());
+		stop.setOnAction(new ButtonHandler());
+		clear.setOnAction(new ButtonHandler());
+		def.setOnAction(new ButtonHandler());
 
+		picker.setOnAction(new ColorHandler());
 
-
-
-
-
-
+		heightSlider.valueProperty().addListener(new WaveAmplitudeHandler());
+		widthSlider.valueProperty().addListener(new WaveLengthHandler());
+		speedSlider.valueProperty().addListener(new SpeedHandler());
 	}
 
 	// ************************************************************************
@@ -155,19 +175,34 @@ public class WaveControlPane extends Pane {
 				wavePane.setWaveAmplitude(60);
 				wavePane.setWaveLength(50);
 				wavePane.setRate(30);
+				wavePane.changeColor(new Color(255, 0, 0, 1));
 			}
 		}
 	}
-	private class ColorHandler{
-
+	private class ColorHandler implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event){
+			Color c = picker.getValue();
+			wavePane.changeColor(c);
+		}
 	}
-	private class SpeedHandler{
-
+	private class SpeedHandler implements ChangeListener{
+		public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+			double speed = speedSlider.getValue();
+			wavePane.setRate((int)speed);
+		}
 	}
-	private class WaveLengthHandler{
-
+	private class WaveLengthHandler implements ChangeListener{
+		public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+			wavePane.suspend();
+			double length = widthSlider.getValue();
+			wavePane.setWaveLength((int)length);
+		}
 	}
-	private class WaveAmplitudeHandler{
-
+	private class WaveAmplitudeHandler implements ChangeListener{
+		public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+			wavePane.suspend();
+			double amp = heightSlider.getValue();
+			wavePane.setWaveAmplitude((int)amp);
+		}
 	}
 }
