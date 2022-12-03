@@ -1,8 +1,8 @@
 // Assignment 12: Arizona State University CSE205
-//         Name: Your Name
-//    StudentID: Your ID
-//      Lecture: Your lecture time
-//  Description: 
+// Name: Sherwin Wang
+// StudentID: 1224486887
+// Lecture: M W F 10:10 AM - 11:00 AM
+// Description: Creates components of GUI.
 
 import java.awt.*;
 import java.security.Key;
